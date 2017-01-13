@@ -19,3 +19,50 @@
 
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
+ /* Remove the navbar's default margin-bottom and rounded borders */
+   .navbar {
+     margin-bottom: 0;
+     border-radius: 0;
+   }
+
+   /* Add a gray background color and some padding to the footer */
+   footer {
+     background-color: #f2f2f2;
+     padding: 15px;
+
+   }
+
+   .jumbotron {
+     background-image:url('http://y.photo.qq.com/img?s=n0m7YMg0L&l=y.jpg');
+     background-repeat: no-repeat;
+     background-size: cover;
+     padding-bottom: 110px;
+   }
+
+   .title {
+     font-family: "Helvetica Neue", "Microsoft Yahei", 微软雅黑;
+     text-align: center;
+     margin-top: 200px;
+     margin-bottom: 80px;
+   }
+
+   .slogan {
+     margin-top: 10px;
+     margin-bottom: 50px;
+     text-align: center;
+     color: #ff4d4d;
+     top: 12px;
+   }
+
+   .lead {
+     margin-bottom: 60px;
+     text-align: center;
+     color: white;
+   }
+
+   .wrapper {
+  width: 80%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
