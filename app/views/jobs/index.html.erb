@@ -1,60 +1,65 @@
 
 
-<div class="container-fluid">
-
-
-  <div class="btn-group btn-group-justified">
-
-      <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound"), :class => "btn btn-primary")%>
-
-
-      <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound"), :class => "btn btn-primary")%>
-
-
-      <%= link_to("按照发表时间排序", jobs_path, :class => "btn btn-primary")  %>
-
- </div>
-  <div>
-    <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+		    <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><%= link_to("Lower Salary", jobs_path(:order => "by_lower_bound"))%></li>
+                      <li><%= link_to("Upper Salary", jobs_path(:oreder => "by_upper_bound"))%></li>
+                      <li><%= link_to("Publish Time", jobs_path)%></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-  </div>
+	</div>
 </div>
+
+
 
 <br /><br />
 
 
 
-<div class="wrapper">
+<div id="wrapper">
+<table class="table">
+<tbody>
 
-<table class="table table-boldered">
-  <thead>
-    <tr>
-      <td>职缺</td>
-      <td>薪资下限</td>
-      <td>薪资上限</td>
-      <td>刊发时间</td>
-    </tr>
-  </thead>
-  <% @jobs.each do |job| %>
-  <tr>
-    <td>
-      <%= link_to(job.title, job_path(job))%>
-    </td>
-    <td>
-      <%= job.wage_lower_bound %>
-    </td>
-    <td>
-      <%= job.wage_upper_bound %>
-    </td>
 
-    <td>
-      <%= job.created_at %>
-    </td>
-  </tr>
-  <% end %>
+<% @jobs.each do |job| %>
+  <h2>
+    <%= link_to job.title, job %>
+  </h2>
+  <p>
+    Published at
+    <%= job.created_at.strftime("%b %d, %Y") %> |
+    by
+    <span><i class="fa fa-envelope" aria-hidden="true"></i>  <%= job.contact_email %></span>
+    11@qq.com
+  </p>
+
+  <p>Salary: <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </p>
+
+  <p>
+    <%= truncate(job.description, length: 200) %>
+  </p>
+  <p>
+    <%= link_to("投递简历", new_job_resume_path(job), :class => "btn btn-xs btn-success")%>
+  </p>
+<% end %>
+</tbody>
 </table>
+<br /><br /><br />
+<div class="text-center">
+  <%= will_paginate @jobs %>
+</div>
 </div>
