@@ -1,0 +1,22 @@
+<div id="wrapper">
+  <div>
+    <i class="fa fa-hand-o-left"></i> <%= link_to("返回职位列表", jobs_path, class: 'btn btn-sm btn-success')  %>
+  </div>
+  <br />
+
+
+<%= render :partial => "jobs/search_bar" %>
+
+<br>
+<div id="wrapper" class="search-result">
+
+  <table class="table table-borderd">
+    <% @jobs.each do |job| %>
+    <%= link_to(render_highlight_content(job,@query_string),job_path(job)) %>
+
+    <% end %>
+
+ </table>
+
+</div>
+</div>

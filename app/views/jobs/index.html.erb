@@ -3,22 +3,20 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-		    <div class="input-group">
+		    <div class="input-group inline-group">
                 <div class="input-group-btn search-panel">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    	<span id="search_concept">筛选</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><%= link_to("Lower Salary", jobs_path(:order => "by_lower_bound"))%></li>
-                      <li><%= link_to("Upper Salary", jobs_path(:oreder => "by_upper_bound"))%></li>
-                      <li><%= link_to("Publish Time", jobs_path)%></li>
+                      <li><%= link_to("最低薪资", jobs_path(:order => "by_lower_bound"))%></li>
+                      <li><%= link_to("最高薪资", jobs_path(:oreder => "by_upper_bound"))%></li>
+                      <li><%= link_to("刊发时间", jobs_path)%></li>
                     </ul>
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
+                <div>
+                  <%= render :partial => "jobs/search_bar" %>
+                </div>
             </div>
         </div>
 	</div>
@@ -44,17 +42,23 @@
     <%= job.created_at.strftime("%b %d, %Y") %> |
     by
     <span><i class="fa fa-envelope" aria-hidden="true"></i>  <%= job.contact_email %></span>
-    11@qq.com
+    11@qq.com |
+    at
+    <span>&nbsp;&nbsp;<i class="fa fa-map-marker"></i>&nbsp;广州</span>
+
   </p>
 
-  <p>Salary: <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </p>
-
+  <span style="font-size: 20px; color: rgb(224,69,60)">
+    <p>Salary: <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </p>
+  </span>
   <p>
     <%= truncate(job.description, length: 200) %>
   </p>
   <p>
     <%= link_to("投递简历", new_job_resume_path(job), :class => "btn btn-xs btn-success")%>
+    <%= link_to("职位详情", job, :class => "btn btn-xs btn-warning")%>
   </p>
+
 <% end %>
 </tbody>
 </table>
@@ -62,4 +66,6 @@
 <div class="text-center">
   <%= will_paginate @jobs %>
 </div>
+
+
 </div>

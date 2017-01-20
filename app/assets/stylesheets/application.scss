@@ -580,7 +580,7 @@ section {
 
 
 .sec-about {
-     background: #E2F1E9;
+
      text-align: center;
      width: 100%;
 }
@@ -588,7 +588,7 @@ section {
 /*Services*/
 
 .sec-services {
-  background: #E2F5CD;
+  background-color: #DFEFEE;
   text-align: center;
   width: 100%;
 }
@@ -619,8 +619,8 @@ section {
 
 hr {
   margin-bottom: 3em;
-  width: 8%;
-  color: #F1FAB1;
+  width: 10%;
+  color: #FC4A80;
 }
 
 .navbar-brand > img {
@@ -633,4 +633,10 @@ hr {
 #wrapper {
      width: 741px;
      margin: 0 auto;
+}
+
+.profile-circle {
+     background-image: url(http://7xjhux.com1.z0.glb.clouddn.com/2017-01-20-000019.jpg);
+     background-position: center center;
+     background-size: cover;
 }
